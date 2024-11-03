@@ -7,21 +7,25 @@ import { useTypewriter } from '../hooks/useTypewriter';
 
 const portfolioItems = [
   {
-    title: "Landing Zone",
-    description: "Projektowanie i implementacja bezpiecznych, skalowalnych środowisk chmurowych dla organizacji."
+    title: "Infrastructure Management (Landing Zone)",
+    description: "As a sole specialist, I manage the entire Landing Zone in my company, utilizing Terraform within the Azure DevOps environment. My role encompasses code maintenance, creation of new projects and resources, as well as overall administration of Google Cloud Platform (GCP). I possess deep knowledge of Infrastructure as Code (IaC) and am proficient in optimizing and scaling cloud environments."
   },
   {
     title: "Website Development",
-    description: "Tworzenie nowoczesnych, responsywnych stron internetowych z wykorzystaniem najnowszych technologii."
+    description: "My web development skills include TypeScript, JavaScript (including large projects in vanilla JS), and React. I have experience in creating responsive websites for clients. My latest project is this portfolio site, which showcases my technical skills through an interactive terminal in the 'About' section. I encourage you to try this feature to get to know me better and see my skills in action."
   },
   {
     title: "Linux Administration",
-    description: "Zarządzanie i optymalizacja systemów Linux dla wysokiej wydajności i bezpieczeństwa."
+    description: "I have extensive experience in Linux and UNIX system administration. My expertise covers distributions such as RHEL (including CentOS, Fedora, Rocky Linux), Debian and its derivatives (e.g., Ubuntu), and Arch variants. Additionally, I have experience with UNIX systems, particularly IBM AIX on IBM Power machines, including LPAR and VIOs. For administrative task automation, I utilize tools like Cron, enhancing system efficiency and reliability."
   },
   {
     title: "DevOps",
-    description: "Wdrażanie praktyk CI/CD i automatyzacja procesów dla zwiększenia efektywności rozwoju oprogramowania."
-  }
+    description: "In my DevOps work, I use a variety of tools and platforms, including GitHub (in a homelab environment), Google Cloud Source Repositories, Azure DevOps, and BitBucket. I'm currently leading a migration project from Azure DevOps to BitBucket, demonstrating my skills in change management and DevOps process optimization. My experience includes creating and managing CI/CD pipelines, contributing to increased efficiency and reliability in software development processes."
+  },
+  {
+    title: "Education Courses",
+    description: "In addition to my technical expertise, I have contributed to the field of IT education by creating and recording two comprehensive courses for Videopoint, a part of the respected Helion Group. These courses demonstrate my ability to communicate complex technical concepts effectively: VPN Networks (OpenVPN and Wireguard) and Virtualization basics (Proxmox)"
+  },
 ];
 
 export default function Home() {
