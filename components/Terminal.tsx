@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef , useCallback} from 'react';
 import { useTypewriter } from '../hooks/useTypewriter';
 
 interface Command {
-  name: string;
-  description: string;
-  action: (args: string[]) => string;
-}
+    name: string;
+    description: string;
+    action: (args: string[]) => React.ReactNode;
+  }
 
 const visibleCommands: Command[] = [
   {
