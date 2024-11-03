@@ -22,10 +22,9 @@ const LoadingScreen: React.FC = () => {
 
     return () => clearInterval(cursorInterval);
   }, []);
-
   return (
     <div className="h-screen w-screen bg-black flex items-center justify-center">
-      <pre className="text-green-500 text-2xl font-mono">
+      <pre className="text-green-500 text-2xl font-sans">
         {text}
         <span className={`${showCursor ? 'opacity-100' : 'opacity-0'}`}>_</span>
       </pre>
