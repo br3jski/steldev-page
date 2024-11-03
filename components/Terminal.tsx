@@ -103,6 +103,25 @@ const visibleCommands: Command[] = [
     action: () => '2021 - WSB Poznan - Engineers degree from Information Technology\n2024 - WSB Merito Wrocław - Master degree in progress\nThesis: Cloud Computing and Terraform',
   },
   {
+    name: 'realizations',
+    description: 'Website for new company - building, gardening and handmade decorations',
+    action: () => {
+      return (
+        <>
+          <p>
+            Maja-Dekoracje. Dom i Ogród - website for new company - building, gardening and handmade decorations
+          </p>
+          <a href="https://maja-dekoracje.pl"><u>Visit this website</u></a>
+        </>
+      );
+    }
+  },
+  {
+    name: 'projects',
+    description: 'Get some information about my projects',
+    action: () => '1. ADS-B.Pro - Web service to track flights. Gallery of the web app will be provided later\n2. RawFlight - project closed\n3. StelDEV AI Studio: project to create summaries of recordings using Whisper AI and GPT-1o, developing multitool\n4. SR-Scheduler - web app in Flask to create new schedules for SimRail Train Simulator',
+  },
+  {
     name: 'clear',
     description: 'Clear terminal',
     action: () => '',
