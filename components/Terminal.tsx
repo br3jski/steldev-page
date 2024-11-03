@@ -34,6 +34,20 @@ const visibleCommands: Command[] = [
     },
   },
   {
+    name: 'socials',
+    description: 'Website for new company - building, gardening and handmade decorations',
+    action: () => {
+      return (
+        <>
+          <p>
+            I do not use Facebook, Instagram etc. The only way to contact me, except mail and phone is LinkedIn
+          </p>
+          <a href="https://www.linkedin.com/in/bruno-stelmaszyk/"><u>Visit my LinkedIn</u></a>
+        </>
+      );
+    }
+  },
+  {
     name: 'company',
     description: 'Show company information',
     action: () => 'Company Name: Cloudvance\nEstablished: 2023\nMission: Being innovative in IT World\nVAT ID PL7811812758',
