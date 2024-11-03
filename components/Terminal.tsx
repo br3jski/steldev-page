@@ -35,7 +35,7 @@ const visibleCommands: Command[] = [
   },
   {
     name: 'socials',
-    description: 'Website for new company - building, gardening and handmade decorations',
+    description: 'My social media',
     action: () => {
       return (
         <>
