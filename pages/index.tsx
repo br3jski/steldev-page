@@ -8,7 +8,7 @@ import { useTypewriter } from '../hooks/useTypewriter';
 const portfolioItems = [
   {
     title: "Infrastructure Management (Landing Zone)",
-    description: "As a sole specialist, I manage the entire Landing Zone in my company, utilizing Terraform within the Azure DevOps environment. My role encompasses code maintenance, creation of new projects and resources, as well as overall administration of Google Cloud Platform (GCP). I possess deep knowledge of Infrastructure as Code (IaC) and am proficient in optimizing and scaling cloud environments."
+    description: "As a sole specialist, I manage the entire Landing Zone in my company, utilizing Terraform within the Azure DevOps environment. My role encompasses code maintenance, creation of new projects and resources, as well as overall administration of Google Cloud Platform (GCP). "
   },
   {
     title: "Website Development",
@@ -25,6 +25,10 @@ const portfolioItems = [
   {
     title: "Education Courses",
     description: "In addition to my technical expertise, I have contributed to the field of IT education by creating and recording two comprehensive courses for Videopoint, a part of the respected Helion Group. These courses demonstrate my ability to communicate complex technical concepts effectively: VPN Networks (OpenVPN and Wireguard) and Virtualization basics (Proxmox)"
+  },
+  {
+    title: "Homelab & Personal Infrastructure",
+    description: "My homelab demonstrates my passion for technology, featuring a custom-built server, a cluster of four Raspberry Pis (3x Pi 4b, 1x Pi 5) for diverse tasks, and a remote bare-metal server in Germany, all interconnected via a MikroTik routerboard, enabling experimentation with distributed systems, containerization, and innovative solutions while honing skills in network optimization and remote server management."
   },
 ];
 

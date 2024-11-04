@@ -20,7 +20,7 @@ const Header: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link href="/contact" className={`hover:text-green-400 ${router.pathname === '/contact' ? 'text-green-400' : 'text-white'}`}>
+            <Link href="/company" className={`hover:text-green-400 ${router.pathname === '/company' ? 'text-green-400' : 'text-white'}`}>
               Contact
             </Link>
           </li>
