@@ -5,7 +5,13 @@ import LoadingScreen from '../components/LoadingScreen';
 import CompanyItem from '../components/CompanyItem';
 import { useTypewriter } from '../hooks/useTypewriter';
 
-const companyItems  = [
+interface CompanyItemData {
+  title: string;
+  description: string;
+  details: string;
+}
+
+const companyItems: CompanyItemData[] = [
   {
     title: "Whoami? ",
     description: "More words about company ",
@@ -23,7 +29,7 @@ const companyItems  = [
   },
   {
     title: "Hosting services",
-    desciption: "Webhosting / Email / DNS / SSL..?",
+    description: "Webhosting / Email / DNS / SSL..?",
     details: "[NEW] I am offering brand new, secure CloudvanceMail. This service is a secure, privacy-focused email that support all security standards, including DKIM, DMARC and SPF (99.9% deliverability)."
   },
   {
