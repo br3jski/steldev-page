@@ -21,7 +21,7 @@ const Header: React.FC = () => {
           </li>
           <li>
             <Link href="/company" className={`hover:text-green-400 ${router.pathname === '/company' ? 'text-green-400' : 'text-white'}`}>
-              Contact
+              Company
             </Link>
           </li>
         </ul>
