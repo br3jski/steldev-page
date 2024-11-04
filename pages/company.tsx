@@ -38,64 +38,60 @@ const companyItems  = [
   },
 ];
 
-export default function Home() {
-    const [isLoading, setIsLoading] = useState(true);
-    const [currentItemIndex, setCurrentItemIndex] = useState(-2); // -2: name, -1: portfolio, 0-3: portfolio items
-  
-    const { displayedText: name, isComplete: nameComplete, startTyping: startName } = useTypewriter("Cloudvance Bruno Stelmaszyk", 100);
-    const { displayedText: portfolio, isComplete: portfolioComplete, startTyping: startPortfolio } = useTypewriter("Company & Offer", 100);
-  
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        startName();
-      }, 3000);
-      return () => clearTimeout(timer);
-    }, [startName]);
-  
-    useEffect(() => {
-      if (nameComplete && currentItemIndex === -2) {
-        setCurrentItemIndex(-1);
-        startPortfolio();
-      }
-      if (portfolioComplete && currentItemIndex === -1) {
-        setCurrentItemIndex(0);
-      }
-    }, [nameComplete, portfolioComplete, currentItemIndex, startPortfolio]);
-  
-    useEffect(() => {
-      console.log('Current item index:', currentItemIndex);
-    }, [currentItemIndex]);
-  
-    const handleItemComplete = () => {
-      setCurrentItemIndex(prev => prev + 1);
-    };
-  
-    if (isLoading) return <LoadingScreen />;
-  
-    return (
-      <Layout>
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold mb-8 text-center text-green-500">
-            {name}{currentItemIndex === -2 && <span className="animate-pulse">_</span>}
-          </h1>
-          <h2 className="text-2xl mb-8 text-center text-green-400">
-            {companyTitle}{currentItemIndex === -1 && <span className="animate-pulse">_</span>}
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {companyItems.map((item, index) => (
-              <CompanyItem
-                key={index}
-                title={item.title}
-                description={item.description}
-                details={item.details}
-                isActive={currentItemIndex === index}
-                onComplete={handleItemComplete}
-              />
-            ))}
-          </div>
+export default function Company() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentItemIndex, setCurrentItemIndex] = useState(-2); // -2: name, -1: company title, 0+: company items
+
+  const { displayedText: name, isComplete: nameComplete, startTyping: startName } = useTypewriter("Cloudvance Bruno Stelmaszyk", 100);
+  const { displayedText: companyTitle, isComplete: companyTitleComplete, startTyping: startCompanyTitle } = useTypewriter("About Our Company", 100);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      startName();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [startName]);
+
+  useEffect(() => {
+    if (nameComplete && currentItemIndex === -2) {
+      setCurrentItemIndex(-1);
+      startCompanyTitle();
+    }
+    if (companyTitleComplete && currentItemIndex === -1) {
+      setCurrentItemIndex(0);
+    }
+  }, [nameComplete, companyTitleComplete, currentItemIndex, startCompanyTitle]);
+
+  const handleItemComplete = () => {
+    setCurrentItemIndex(prev => prev + 1);
+  };
+
+  if (isLoading) return <LoadingScreen />;
+
+  return (
+    <Layout>
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-8 text-center text-green-500">
+          {name}{currentItemIndex === -2 && <span className="animate-pulse">_</span>}
+        </h1>
+        <h2 className="text-2xl mb-8 text-center text-green-400">
+          {companyTitle}{currentItemIndex === -1 && <span className="animate-pulse">_</span>}
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {companyItems.map((item, index) => (
+            <CompanyItem
+              key={index}
+              title={item.title}
+              description={item.description}
+              details={item.details}
+              isActive={currentItemIndex === index}
+              onComplete={handleItemComplete}
+            />
+          ))}
         </div>
-      </Layout>
-    );
-  }
+      </div>
+    </Layout>
+  );
+}
