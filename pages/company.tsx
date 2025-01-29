@@ -30,7 +30,7 @@ const companyItems: CompanyItemData[] = [
   {
     title: "Hosting services",
     description: "Webhosting / Email / DNS / SSL..?",
-    details: "[NEW] I am offering brand new, secure CloudvanceMail. This service is a secure, privacy-focused email that support all security standards, including DKIM, DMARC and SPF (99.9% deliverability)."
+    details: "[NEW] I am offering brand new, secure CloudvanceMail. This service is a secure, privacy-focused email that support all security standards, including DKIM, DMARC and SPF (99.9% deliverability, 10/10 testing scores). Servers are located in the EU and comply with GPDR."
   },
   {
     title: "Custom orders",
