@@ -10,7 +10,7 @@ const LoadingScreen: React.FC = () => {
     const typeText = async () => {
       for (let i = 0; i <= fullText.length; i++) {
         setText(fullText.slice(0, i));
-        await new Promise(resolve => setTimeout(resolve, 100)); // Adjust speed here
+        await new Promise(resolve => setTimeout(resolve, 50)); // Adjust speed here
       }
     };
 
