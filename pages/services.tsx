@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import LoadingScreen from '../components/LoadingScreen';
-import ServicesItem from '../components/ServicesItem';
 import { Link as ScrollLink } from 'react-scroll';
 import PackageItem from '../components/PackageItem';
 
@@ -18,6 +17,7 @@ interface ServiceData {
   services: ServiceItem[];
   annotation?: string; // Dodajemy opcjonalne pole dla adnotacji
 }
+import Accordion from '../components/Accordion';
 
 interface PackageItem {
   id: string;
@@ -137,7 +137,7 @@ export default function Services() {
         {/* Menu nawigacyjne */}
         <div className="w-64 fixed left-0 top-0 h-full bg-gray-900 p-4 overflow-y-auto">
           <h2 className="text-2xl font-bold mb-4 text-green-500">Our Services</h2>
-          <ul className="space-y-2">
+          <ul className="space-y-2 text-sm">
             {serviceItems.map((item) => (
               <li key={item.id}>
                 <ScrollLink
@@ -157,18 +157,17 @@ export default function Services() {
           <div className="flex-1 ml-64">
           <div className="container mx-auto px-4 py-8">
             <h1 className="text-4xl font-bold mb-8 text-center text-green-500">
-              Our Services
             </h1>
             <p className="text-xl text-center text-gray-300 mb-8">
               Prices do not include 23% VAT
             </p>
             <div className="space-y-12">
-              {serviceItems.map((item) => (
-                <div key={item.id} id={item.id}>
-                  <ServicesItem
+            {serviceItems.map((item) => (
+                  <div key={item.id} id={item.id} className="mb-4">
+                  <Accordion
                     title={item.title}
                     services={item.services}
-                    annotation={item.annotation}
+                    annotation={item.annotation ? item.annotation : ""}
                   />
                 </div>
               ))}
