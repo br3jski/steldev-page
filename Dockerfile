@@ -6,10 +6,13 @@ RUN npm install --production=false || yarn install --production=false
 COPY . .
 RUN npm run build
 
-# Etap 2: Uruchomienie serwera Nginx do obsługi statycznych plików
-FROM nginx:stable-alpine
-COPY --from=builder /app/.next/static /usr/share/nginx/html/_next/static
-COPY --from=builder /app/public /usr/share/nginx/html/public
-COPY --from=builder /app/.next/server/pages /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Etap 2: Uruchomienie serwera Next.js
+FROM node:lts-alpine
+WORKDIR /app
+COPY --from=builder /app/package.json /app/package.json
+COPY --from=builder /app/yarn.lock /app/yarn.lock
+COPY --from=builder /app/.next /app/.next
+COPY --from=builder /app/public /app/public
+RUN npm install --production || yarn install --production
+EXPOSE 3000
+CMD ["npm", "start"]
