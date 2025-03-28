@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --production=false
 COPY . .
-COPY ./public ./
+COPY public public
 RUN npm run build
 
 # Etap 2: Uruchomienie serwera Next.js
