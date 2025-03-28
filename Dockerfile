@@ -1,24 +1,24 @@
-# Stage 1: Install dependencies
-FROM node:lts-alpine AS dependencies
+FROM node:18-alpine AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install --production=false
+RUN npm ci --legacy-peer-deps
 
-# Stage 2: Build the Next.js application
-FROM node:lts-alpine AS builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 COPY --from=dependencies /app/node_modules /app/node_modules
 COPY . .
-COPY public public
 RUN npm run build
 
-# Stage 3: Run the Next.js server
-FROM node:lts-alpine
+FROM node:18-alpine AS runner
 WORKDIR /app
-COPY --from=builder /app/package.json /app/package.json
-COPY --from=builder /app/package-lock.json /app/package-lock.json
+# Next.js specific files
 COPY --from=builder /app/.next /app/.next
-COPY --from=builder /app/public /app/public
-RUN npm install --production=true
-EXPOSE 3000
-CMD ["npm", "run", "start"]
+# Note: Removed public directory and next.config.js references since they don't exist
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/package.json /app/package.json
+
+# Set environment to production (fixed syntax)
+ENV NODE_ENV=production
+
+# Start the Next.js application
+CMD ["npm", "start"]
