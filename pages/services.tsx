@@ -165,11 +165,21 @@ export default function Services() {
             {serviceItems.map((item) => (
                   <div key={item.id} id={item.id} className="mb-4">
                   <Accordion
-                    title={item.title}
-                    services={item.services}
-                    annotation={item.annotation ? item.annotation : ""}
-                  />
-                </div>
+                    title={item.title}                    
+                    annotation={item.annotation ? item.annotation : ""}>
+                         <ul className="list-disc list-inside space-y-2 text-gray-300">
+                      {item.services.map((serviceItem, index) => (
+                        <li key={index} className="flex items-center justify-between">
+                          <span className="flex-1">{serviceItem.service}</span>
+                          {serviceItem.price && <span className="ml-4">{serviceItem.price}</span>}
+                          {serviceItem.unit && <span className="ml-2">{serviceItem.unit}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </Accordion>
+                  
+                  
+                  </div>
               ))}
             </div>
 

@@ -8,10 +8,11 @@ interface Service {
 
 interface AccordionProps {
   title: string;
-  services?: Service[];
+  annotation?: string;
+  children?: ReactNode;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, services }) => {
+const Accordion: React.FC<AccordionProps> = ({ title, annotation, children }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,32 +36,10 @@ const Accordion: React.FC<AccordionProps> = ({ title, services }) => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </div>
-      {isOpen && services && services.length > 0 ? (        
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-gray-800 text-white">
-              <th className="py-2 px-4 font-bold ">Service</th>
-              <th className="py-2 px-4 font-bold ">Price</th>
-              <th className="py-2 px-4 font-bold ">Unit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {services.map((service, index) => (
-              <tr key={index} className="border-b border-gray-200">
-                <td className="py-2 px-4">{service.service}</td>
-                <td className="py-2 px-4">
-                  {service.price ? (
-                    <span className="font-bold">{service.price}</span>
-                  ) : null}
-                </td>
-                <td className="py-2 px-4">{service.unit || ''}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : isOpen && (        
-        <div>
-            
+      {isOpen && (
+        <div className="p-4">
+            {children}
+            {annotation && <p className="mt-2 text-sm text-gray-400">{annotation}</p>}
         </div>
       )}
     </div>
