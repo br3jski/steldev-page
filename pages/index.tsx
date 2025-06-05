@@ -1,94 +1,165 @@
 // pages/index.tsx
-import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
-import LoadingScreen from '../components/LoadingScreen';
-import PortfolioItem from '../components/PortfolioItem';
-import { useTypewriter } from '../hooks/useTypewriter';
+import { useState } from 'react';
 
 const portfolioItems = [
   {
-    title: "Infrastructure Management (Landing Zone)",
-    description: "As a sole specialist, I manage the entire Landing Zone in my company, utilizing Terraform within the Azure DevOps environment. My role encompasses code maintenance, creation of new projects and resources, as well as overall administration of Google Cloud Platform (GCP). "
+    title: "Infrastructure Management",
+    description: "Managing entire Landing Zone using Terraform within Azure DevOps environment. Expertise in Google Cloud Platform (GCP) administration and resource management.",
+    skills: ["Terraform", "Azure DevOps", "GCP", "Infrastructure as Code"]
   },
   {
-    title: "Website Development",
-    description: "My web development skills include TypeScript, JavaScript (including large projects in vanilla JS), and React. I have experience in creating responsive websites for clients. My latest project is this portfolio site, which showcases my technical skills through an interactive terminal in the 'About' section. I encourage you to try this feature to get to know me better and see my skills in action."
+    title: "Web Development",
+    description: "Full-stack development with modern technologies. Building responsive, accessible web applications with focus on performance and user experience.",
+    skills: ["TypeScript", "React", "Next.js", "Tailwind CSS"]
   },
   {
     title: "Linux Administration",
-    description: "I have extensive experience in Linux and UNIX system administration. My expertise covers distributions such as RHEL (including CentOS, Fedora, Rocky Linux), Debian and its derivatives (e.g., Ubuntu), and Arch variants. Additionally, I have experience with UNIX systems, particularly IBM AIX on IBM Power machines, including LPAR and VIOs. For administrative task automation, I utilize tools like Cron, enhancing system efficiency and reliability."
+    description: "Extensive experience in Linux and UNIX system administration across multiple distributions. Automation and optimization of system processes.",
+    skills: ["RHEL", "Ubuntu", "Debian", "IBM AIX", "System Automation"]
   },
   {
-    title: "DevOps",
-    description: "In my DevOps work, I use a variety of tools and platforms, including GitHub (in a homelab environment), Google Cloud Source Repositories, Azure DevOps, and BitBucket. I'm currently leading a migration project from Azure DevOps to BitBucket, demonstrating my skills in change management and DevOps process optimization. My experience includes creating and managing CI/CD pipelines, contributing to increased efficiency and reliability in software development processes."
+    title: "DevOps & CI/CD",
+    description: "Building and managing CI/CD pipelines across multiple platforms. Leading migration projects and optimizing development workflows.",
+    skills: ["GitHub", "Azure DevOps", "BitBucket", "CI/CD", "Pipeline Management"]
   },
   {
-    title: "Education Courses",
-    description: "In addition to my technical expertise, I have contributed to the field of IT education by creating and recording two comprehensive courses for Videopoint, a part of the respected Helion Group. These courses demonstrate my ability to communicate complex technical concepts effectively: VPN Networks (OpenVPN and Wireguard) and Virtualization basics (Proxmox)"
+    title: "Technical Education",
+    description: "Created comprehensive IT courses for Videopoint (Helion Group), focusing on networking and virtualization technologies.",
+    skills: ["OpenVPN", "WireGuard", "Proxmox", "Technical Writing"]
   },
   {
-    title: "Homelab & Personal Infrastructure",
-    description: "My homelab demonstrates my passion for technology, featuring a custom-built server, a cluster of four Raspberry Pis (3x Pi 4b, 1x Pi 5) for diverse tasks, and a remote bare-metal server in Germany, all interconnected via a MikroTik routerboard, enabling experimentation with distributed systems, containerization, and innovative solutions while honing skills in network optimization and remote server management."
+    title: "Homelab & R&D",
+    description: "Custom infrastructure for continuous learning and experimentation. Distributed systems with Raspberry Pi cluster and remote servers.",
+    skills: ["Containerization", "Networking", "Distributed Systems", "Hardware"]
   },
 ];
 
 export default function Home() {
-    const [isLoading, setIsLoading] = useState(true);
-    const [currentItemIndex, setCurrentItemIndex] = useState(-2); // -2: name, -1: portfolio, 0-3: portfolio items
-  
-    const { displayedText: name, isComplete: nameComplete, startTyping: startName } = useTypewriter("Bruno Stelmaszyk", 100);
-    const { displayedText: portfolio, isComplete: portfolioComplete, startTyping: startPortfolio } = useTypewriter("Portfolio", 100);
-  
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        startName();
-      }, 3000);
-      return () => clearTimeout(timer);
-    }, [startName]);
-  
-    useEffect(() => {
-      if (nameComplete && currentItemIndex === -2) {
-        setCurrentItemIndex(-1);
-        startPortfolio();
-      }
-      if (portfolioComplete && currentItemIndex === -1) {
-        setCurrentItemIndex(0);
-      }
-    }, [nameComplete, portfolioComplete, currentItemIndex, startPortfolio]);
-  
-    useEffect(() => {
-      console.log('Current item index:', currentItemIndex);
-    }, [currentItemIndex]);
-  
-    const handleItemComplete = () => {
-      setCurrentItemIndex(prev => prev + 1);
-    };
-  
-    if (isLoading) return <LoadingScreen />;
-  
-    return (
-      <Layout>
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold mb-8 text-center text-green-500">
-            {name}{currentItemIndex === -2 && <span className="animate-pulse">_</span>}
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const filteredItems = selectedCategory 
+    ? portfolioItems.filter(item => 
+        item.skills.some(skill => 
+          skill.toLowerCase().includes(selectedCategory.toLowerCase())
+        )
+      )
+    : portfolioItems;
+
+  const allSkills = Array.from(new Set(portfolioItems.flatMap(item => item.skills)));
+
+  return (
+    <Layout>
+      {/* Hero Section */}
+      <section className="py-20 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Bruno Stelmaszyk
           </h1>
-          <h2 className="text-2xl mb-8 text-center text-green-400">
-            {portfolio}{currentItemIndex === -1 && <span className="animate-pulse">_</span>}
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {portfolioItems.map((item, index) => (
-              <PortfolioItem
-                key={index}
-                title={item.title}
-                description={item.description}
-                isActive={currentItemIndex === index}
-                onComplete={handleItemComplete}
-              />
+          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Infrastructure Engineer & Full-Stack Developer specializing in cloud platforms, 
+            automation, and modern web technologies.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <a 
+              href="#portfolio" 
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition-colors font-medium"
+            >
+              View My Work
+            </a>
+            <a 
+              href="/about" 
+              className="border border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-3 rounded-lg transition-colors font-medium"
+            >
+              About Me
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Filter */}
+      <section className="py-12 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">Technologies & Skills</h2>
+          <div className="flex flex-wrap justify-center gap-3">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === null
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              All
+            </button>
+            {allSkills.map((skill) => (
+              <button
+                key={skill}
+                onClick={() => setSelectedCategory(skill)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  selectedCategory === skill
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {skill}
+              </button>
             ))}
           </div>
         </div>
-      </Layout>
-    );
-  }
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-4">Portfolio</h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Here's a showcase of my expertise across different domains of technology and infrastructure.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredItems.map((item, index) => (
+              <div 
+                key={index} 
+                className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow group"
+              >
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  {item.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {item.skills.map((skill, skillIndex) => (
+                    <span 
+                      key={skillIndex}
+                      className="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
+          <p className="text-gray-600 mb-8 text-lg">
+            Interested in collaborating or learning more about my work? I'd love to hear from you.
+          </p>
+          <a 
+            href="/about" 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg transition-colors font-medium text-lg inline-block"
+          >
+            Get In Touch
+          </a>
+        </div>
+      </section>
+    </Layout>
+  );
+}
