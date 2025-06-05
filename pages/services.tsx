@@ -1,6 +1,7 @@
 // pages/services.tsx
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 interface ServiceItem {
   service: string;
@@ -122,8 +123,27 @@ const packageItems: PackageItem[] = [
 export default function Services() {
   const [activeService, setActiveService] = useState<string | null>(null);
 
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Professional IT Services by Bruno Stelmaszyk",
+    "description": "Web development, hosting, email solutions, and VPS services for businesses of all sizes.",
+    "provider": {
+      "@type": "Person",
+      "name": "Bruno Stelmaszyk"
+    },
+    "serviceType": ["Web Development", "Cloud Hosting", "Email Services", "VPS Solutions"]
+  };
+
   return (
-    <Layout>
+    <>
+      <SEO 
+        title="Services"
+        description="Professional web development, hosting, email solutions, and VPS services. Custom IT solutions tailored to your business needs with competitive pricing."
+        canonical="/services"
+        schema={servicesSchema}
+      />
+      <Layout>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto text-center">
@@ -268,5 +288,6 @@ export default function Services() {
         </div>
       </section>
     </Layout>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 // pages/about.tsx
 import React from 'react';
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 const AboutPage: React.FC = () => {
   const skills = [
@@ -49,8 +50,27 @@ const AboutPage: React.FC = () => {
     }
   ];
 
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Bruno Stelmaszyk",
+    "description": "Learn about Bruno Stelmaszyk's professional experience, technical skills, and expertise in infrastructure engineering and web development.",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Bruno Stelmaszyk",
+      "jobTitle": "Infrastructure Engineer & Full-Stack Developer"
+    }
+  };
+
   return (
-    <Layout>
+    <>
+      <SEO 
+        title="About"
+        description="Learn about Bruno Stelmaszyk's professional experience in infrastructure engineering, cloud platforms, web development, and technical expertise across multiple domains."
+        canonical="/about"
+        schema={aboutSchema}
+      />
+      <Layout>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto">
@@ -166,6 +186,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
     </Layout>
+    </>
   );
 };
 

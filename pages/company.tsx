@@ -1,6 +1,7 @@
 // pages/index.tsx
 import React from 'react';
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 interface CompanySection {
   title: string;
@@ -68,8 +69,28 @@ const values = [
 ];
 
 export default function Company() {
+  const companySchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Cloudvance",
+    "description": "IT infrastructure and cloud solutions company specializing in modern technologies and automation.",
+    "founder": {
+      "@type": "Person",
+      "name": "Bruno Stelmaszyk"
+    },
+    "foundingDate": "2022",
+    "knowsAbout": ["Cloud Infrastructure", "DevOps", "Web Development", "Email Hosting", "VPS Solutions"]
+  };
+
   return (
-    <Layout>
+    <>
+      <SEO 
+        title="Company"
+        description="Learn about Cloudvance - your trusted partner for modern IT infrastructure, cloud solutions, and digital transformation since 2022."
+        canonical="/company"
+        schema={companySchema}
+      />
+      <Layout>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto text-center">
@@ -199,5 +220,6 @@ export default function Company() {
         </div>
       </section>
     </Layout>
+    </>
   );
 }

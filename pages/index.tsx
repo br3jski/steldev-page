@@ -1,5 +1,6 @@
 // pages/index.tsx
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 import { useState } from 'react';
 
 const portfolioItems = [
@@ -48,8 +49,31 @@ export default function Home() {
 
   const allSkills = Array.from(new Set(portfolioItems.flatMap(item => item.skills)));
 
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Bruno Stelmaszyk - Infrastructure Engineer & Full-Stack Developer",
+    "description": "Professional portfolio showcasing expertise in cloud infrastructure, web development, and DevOps solutions.",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Bruno Stelmaszyk",
+      "jobTitle": "Infrastructure Engineer & Full-Stack Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cloudvance"
+      }
+    }
+  };
+
   return (
-    <Layout>
+    <>
+      <SEO 
+        title="Home"
+        description="Bruno Stelmaszyk - Professional Infrastructure Engineer and Full-Stack Developer specializing in cloud platforms, automation, and modern web technologies."
+        canonical="/"
+        schema={homeSchema}
+      />
+      <Layout>
       {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="max-w-4xl mx-auto">
@@ -161,5 +185,6 @@ export default function Home() {
         </div>
       </section>
     </Layout>
+    </>
   );
 }

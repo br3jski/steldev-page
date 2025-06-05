@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://brunos.dev/sitemap.xml
+
+# Crawl-delay for courtesy
+Crawl-delay: 1 
