@@ -4,7 +4,8 @@ module.exports = {
       name: 'steldev-page',
       script: 'npm',
       args: 'start',
-      cwd: '/home/bruce/steldev-page',
+      // cwd: '/home/bruce/steldev-page', <-- devel
+      cwd: '/root/steldev-page', // production
       instances: 1,
       autorestart: true,
       watch: false,
