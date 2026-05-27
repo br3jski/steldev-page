@@ -126,7 +126,7 @@ const content: Record<Locale, SiteCopy> = {
         title: 'ADS-B.Pro RadarView',
         description:
           'System do wizualizacji ruchu lotniczego w czasie rzeczywistym: dane ADS-B, rendering śladów lotów, backend i warstwa prezentacji.',
-        image: '/radarview.jpg',
+        image: '/radarview.jpg?v=2',
         imageAlt: 'Podgląd interfejsu ADS-B.Pro RadarView',
         tags: ['ADS-B', 'real-time data', 'maps', 'backend'],
       },
@@ -134,7 +134,7 @@ const content: Record<Locale, SiteCopy> = {
         title: 'VRS X',
         description:
           'Nowoczesna implementacja aplikacji do śledzenia ruchu lotniczego oparta o .NET 10 i nowszą architekturę usługową.',
-        image: '/vrsx.jpg',
+        image: '/vrsx.jpg?v=2',
         imageAlt: 'Podgląd interfejsu VRS X',
         tags: ['.NET', 'tracking', 'architecture', 'aviation'],
       },
@@ -147,7 +147,7 @@ const content: Record<Locale, SiteCopy> = {
         title: 'Maja-Dekoracje',
         description:
           'Odświeżenie strony firmy usługowej z branży budowlano-ogrodowej: czytelniejsza oferta, lepszy układ usług i przygotowanie pod klientów z Google.',
-        image: '/maja-dekoracje.jpg',
+        image: '/maja-dekoracje.jpg?v=2',
         imageAlt: 'Podgląd strony Maja-Dekoracje',
         href: 'https://maja-dekoracje.pl',
         tags: ['website refresh', 'local SEO', 'mobile', 'services'],
@@ -258,7 +258,7 @@ const content: Record<Locale, SiteCopy> = {
         title: 'ADS-B.Pro RadarView',
         description:
           'Real-time air traffic visualization system: ADS-B data, flight track rendering, backend and presentation layer.',
-        image: '/radarview.jpg',
+        image: '/radarview.jpg?v=2',
         imageAlt: 'ADS-B.Pro RadarView interface preview',
         tags: ['ADS-B', 'real-time data', 'maps', 'backend'],
       },
@@ -266,7 +266,7 @@ const content: Record<Locale, SiteCopy> = {
         title: 'VRS X',
         description:
           'Modern implementation of an air traffic tracking application based on .NET 10 and a newer service architecture.',
-        image: '/vrsx.jpg',
+        image: '/vrsx.jpg?v=2',
         imageAlt: 'VRS X interface preview',
         tags: ['.NET', 'tracking', 'architecture', 'aviation'],
       },
@@ -279,7 +279,7 @@ const content: Record<Locale, SiteCopy> = {
         title: 'Maja-Dekoracje',
         description:
           'Website refresh for a construction and garden services company: clearer offer, better service layout and preparation for clients coming from Google.',
-        image: '/maja-dekoracje.jpg',
+        image: '/maja-dekoracje.jpg?v=2',
         imageAlt: 'Maja-Dekoracje website preview',
         href: 'https://maja-dekoracje.pl',
         tags: ['website refresh', 'local SEO', 'mobile', 'services'],
@@ -353,11 +353,11 @@ function WorkCard({ item }: { item: WorkItem }) {
   const body = (
     <article className="group h-full overflow-hidden border border-emerald-500/20 bg-[#101510] transition duration-200 hover:-translate-y-1 hover:border-emerald-300/70 hover:shadow-[0_0_30px_rgba(16,185,129,0.12)]">
       {item.image ? (
-        <div className="border-b border-emerald-500/20 bg-black">
+        <div className="overflow-hidden border-b border-emerald-500/20 bg-black">
           <img
             src={item.image}
             alt={item.imageAlt || item.title}
-            className="h-56 w-full object-cover opacity-75 contrast-125 saturate-75 transition duration-300 group-hover:opacity-100 group-hover:saturate-100"
+            className="h-56 w-full scale-[1.08] object-cover opacity-75 contrast-125 saturate-75 transition duration-300 group-hover:scale-[1.11] group-hover:opacity-100 group-hover:saturate-100"
           />
         </div>
       ) : (
