@@ -1,39 +1,63 @@
-/* styles/animations.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    line-height: 1.6;
+:root {
+  --bg: #070907;
+  --surface: #101510;
+  --terminal: #34d399;
+  --terminal-dim: rgba(52, 211, 153, 0.62);
+  --cyan: #67e8f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(103, 232, 249, 0.08), transparent 28rem),
+    radial-gradient(circle at 80% 0%, rgba(52, 211, 153, 0.08), transparent 24rem),
+    var(--bg);
+  color: var(--terminal);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  line-height: 1.6;
+  text-shadow: 0 0 2px rgba(52, 211, 153, 0.24);
+}
+
+::selection {
+  background: var(--terminal);
+  color: #020403;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-@layer components {
-  .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-}
-
-/* Smooth transitions for better UX */
 @layer utilities {
-  .transition-colors {
-    transition-property: color, background-color, border-color;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
-  
-  .transition-shadow {
-    transition-property: box-shadow;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
-
-  /* Screen reader only content */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -57,4 +81,3 @@
     white-space: normal;
   }
 }
-

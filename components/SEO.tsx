@@ -8,14 +8,15 @@ interface SEOProps {
   ogType?: 'website' | 'article' | 'profile';
   schema?: object;
   noindex?: boolean;
+  locale?: 'pl' | 'en';
 }
 
 const defaultMeta = {
-  title: 'Bruno Stelmaszyk - Infrastructure Engineer & Full-Stack Developer',
-  description: 'Professional infrastructure engineer and full-stack developer specializing in cloud platforms, automation, and modern web technologies. Expert in GCP, Terraform, React, and Linux administration.',
-  image: '/og-image.jpg',
-  url: 'https://brunos.dev', // Update with your actual domain
-  siteName: 'Bruno Stelmaszyk - Cloudvance'
+  title: 'Bruno Stelmaszyk - IT, Cloud & Websites',
+  description: 'IT, cloud, websites, automation and technical support for small businesses by Bruno Stelmaszyk / Cloudvance.',
+  image: '/radarview.jpg',
+  url: 'https://stelmaszyk.dev',
+  siteName: 'Bruno Stelmaszyk / Cloudvance'
 };
 
 export default function SEO({
@@ -26,24 +27,30 @@ export default function SEO({
   ogType = 'website',
   schema,
   noindex = false,
+  locale = 'pl',
 }: SEOProps) {
-  const pageTitle = title ? `${title} | ${defaultMeta.siteName}` : defaultMeta.title;
+  const pageTitle = title || defaultMeta.title;
   const pageUrl = canonical ? `${defaultMeta.url}${canonical}` : defaultMeta.url;
+  const ogLocale = locale === 'pl' ? 'pl_PL' : 'en_US';
+  const alternateLocale = locale === 'pl' ? 'en_US' : 'pl_PL';
+  const languageAlternates = [
+    { hrefLang: 'pl', href: `${defaultMeta.url}/` },
+    { hrefLang: 'en', href: `${defaultMeta.url}/en` },
+    { hrefLang: 'x-default', href: `${defaultMeta.url}/` },
+  ];
 
   const structuredData = schema || {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Bruno Stelmaszyk",
-    "jobTitle": "Infrastructure Engineer & Full-Stack Developer",
+    "jobTitle": "Cloud Engineer",
     "worksFor": {
       "@type": "Organization",
       "name": "Cloudvance"
     },
     "url": defaultMeta.url,
     "sameAs": [
-      // Add your social media profiles here
-      // "https://linkedin.com/in/yourprofile",
-      // "https://github.com/yourprofile"
+      "https://www.linkedin.com/in/bruno-stelmaszyk/"
     ],
     "knowsAbout": [
       "Google Cloud Platform",
@@ -54,7 +61,8 @@ export default function SEO({
       "Linux Administration",
       "DevOps",
       "CI/CD",
-      "Web Development"
+      "Web Development",
+      "Small Business IT"
     ],
     "address": {
       "@type": "PostalAddress",
@@ -72,6 +80,14 @@ export default function SEO({
       
       {/* Canonical URL */}
       {canonical && <link rel="canonical" href={pageUrl} />}
+      {languageAlternates.map((alternate) => (
+        <link
+          key={alternate.hrefLang}
+          rel="alternate"
+          hrefLang={alternate.hrefLang}
+          href={alternate.href}
+        />
+      ))}
       
       {/* Robots */}
       {noindex ? (
@@ -81,15 +97,16 @@ export default function SEO({
       )}
       
       {/* Open Graph */}
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content={ogLocale} />
+      <meta property="og:locale:alternate" content={alternateLocale} />
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={pageUrl} />
       <meta property="og:site_name" content={defaultMeta.siteName} />
       <meta property="og:image" content={`${defaultMeta.url}${ogImage}`} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:width" content="1977" />
+      <meta property="og:image:height" content="1471" />
       <meta property="og:image:alt" content={pageTitle} />
       
       {/* Twitter Card */}
@@ -101,15 +118,11 @@ export default function SEO({
       
       {/* Additional SEO Tags */}
       <meta name="author" content="Bruno Stelmaszyk" />
-      <meta name="keywords" content="Infrastructure Engineer, Full-Stack Developer, GCP, Google Cloud Platform, Terraform, React, TypeScript, Linux Administration, DevOps, CI/CD, Web Development, Cloud Architecture, Automation" />
+      <meta name="keywords" content="Bruno Stelmaszyk, Cloudvance, IT dla małych firm, Google Cloud Platform, Terraform, strony internetowe, automatyzacja, DevOps, Linux, cloud engineer" />
       
-      {/* Favicon and Icons */}
-      <link rel="icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      {/* App Metadata */}
       <link rel="manifest" href="/site.webmanifest" />
-      <meta name="theme-color" content="#2563eb" />
+      <meta name="theme-color" content="#070907" />
       
       {/* Structured Data */}
       <script
@@ -118,4 +131,4 @@ export default function SEO({
       />
     </Head>
   );
-} 
+}

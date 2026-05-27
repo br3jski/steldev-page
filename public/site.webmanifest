@@ -1,22 +1,10 @@
 {
-  "name": "Bruno Stelmaszyk - Infrastructure Engineer",
+  "name": "Bruno Stelmaszyk / Cloudvance",
   "short_name": "Bruno Stelmaszyk",
-  "description": "Professional Infrastructure Engineer and Full-Stack Developer",
-  "icons": [
-    {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "theme_color": "#2563eb",
-  "background_color": "#ffffff",
+  "description": "IT, cloud and websites for small businesses.",
+  "theme_color": "#070907",
+  "background_color": "#070907",
   "display": "standalone",
   "start_url": "/",
   "scope": "/"
-} 
+}

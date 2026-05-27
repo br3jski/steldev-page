@@ -1,19 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  
-  // Ensure server binds to all interfaces for remote access
-  experimental: {
-    // This helps with remote access
-  },
 
   // Standalone output for better PM2 compatibility
   output: 'standalone',
-
-  // Custom server configuration
-  async rewrites() {
-    return [];
-  },
 
   // Optimize for production
   compress: true,
@@ -42,4 +32,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;

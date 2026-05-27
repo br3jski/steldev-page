@@ -29,12 +29,19 @@ console.log('\n📄 Checking pages for SEO components:');
 pageFiles.forEach(file => {
   const filePath = path.join(pagesDir, file);
   const content = fs.readFileSync(filePath, 'utf-8');
+
+  const isRedirectPage = content.includes('redirect:') && content.includes('destination:');
+  const usesSeoComponent = content.includes('import SEO') || content.includes('<SEO');
+  const usesSitePage = content.includes('SitePage') && content.includes('getSiteCopy');
   
-  const hasSEO = content.includes('import SEO') || content.includes('<SEO');
-  const hasTitle = content.includes('title=') || content.includes('<title>');
-  const hasDescription = content.includes('description=');
+  const hasSEO = isRedirectPage || usesSeoComponent || usesSitePage;
+  const hasTitle = isRedirectPage || content.includes('title=') || content.includes('<title>') || usesSitePage;
+  const hasDescription = isRedirectPage || content.includes('description=') || usesSitePage;
   
   console.log(`📄 ${file}:`);
+  if (isRedirectPage) {
+    console.log('  ↪️  Redirect page');
+  }
   console.log(`  ${hasSEO ? '✅' : '❌'} SEO component`);
   console.log(`  ${hasTitle ? '✅' : '❌'} Title`);
   console.log(`  ${hasDescription ? '✅' : '❌'} Description`);
@@ -52,11 +59,8 @@ console.log('✅ Semantic HTML structure');
 console.log('✅ Accessibility improvements');
 
 console.log('\n🚀 Next steps:');
-console.log('1. Update domain URLs in SEO.tsx and sitemap.xml.tsx');
-console.log('2. Add actual favicon files (favicon.ico, apple-touch-icon.png, etc.)');
-console.log('3. Create og-image.jpg (1200x630px) for social sharing');
-console.log('4. Add social media profile links to structured data');
-console.log('5. Consider adding Google Analytics or other tracking');
-console.log('6. Test with Google Search Console and PageSpeed Insights');
+console.log('1. Test with Google Search Console and PageSpeed Insights');
+console.log('2. Add a dedicated 1200x630 social sharing image if needed');
+console.log('3. Add analytics only if you have a concrete use for the data');
 
-console.log('\n✨ SEO optimization complete!'); 
+console.log('\n✨ SEO optimization complete!');

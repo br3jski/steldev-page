@@ -1,43 +1,51 @@
 import { GetServerSideProps } from 'next';
 
-const SITE_URL = 'https://brunos.dev'; // Update with your actual domain
+const SITE_URL = 'https://stelmaszyk.dev';
+const LAST_MOD = '2026-05-27';
+
+const alternates = [
+  { hreflang: 'pl', href: `${SITE_URL}/` },
+  { hreflang: 'en', href: `${SITE_URL}/en` },
+  { hreflang: 'x-default', href: `${SITE_URL}/` },
+];
+
+const pages = [
+  { route: '/', priority: '1.0' },
+  { route: '/en', priority: '0.8' },
+];
 
 function generateSiteMap() {
-  const pages = [
-    '',
-    '/about',
-    '/services', 
-    '/company'
-  ];
-
   return `<?xml version="1.0" encoding="UTF-8"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     ${pages
-       .map((route) => {
-         return `
-       <url>
-           <loc>${`${SITE_URL}${route}`}</loc>
-           <lastmod>${new Date().toISOString()}</lastmod>
-           <changefreq>monthly</changefreq>
-           <priority>${route === '' ? '1.0' : '0.8'}</priority>
-       </url>
-     `;
-       })
-       .join('')}
-   </urlset>
- `;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${pages
+  .map((page) => {
+    const loc = `${SITE_URL}${page.route}`;
+
+    return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${LAST_MOD}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>${page.priority}</priority>
+${alternates
+  .map(
+    (alternate) =>
+      `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${alternate.href}" />`
+  )
+  .join('\n')}
+  </url>`;
+  })
+  .join('\n')}
+</urlset>
+`;
 }
 
 function SiteMap() {
-  // getServerSideProps will do the heavy lifting
+  return null;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap();
-
-  res.setHeader('Content-Type', 'text/xml');
-  res.write(sitemap);
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  res.write(generateSiteMap());
   res.end();
 
   return {
@@ -45,4 +53,4 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   };
 };
 
-export default SiteMap; 
+export default SiteMap;
