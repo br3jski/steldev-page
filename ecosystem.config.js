@@ -2,8 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'steldev-page',
-      script: 'npm',
-      args: 'start',
+      script: '.next/standalone/server.js',
+      interpreter: 'node',
       // cwd: '/home/bruce/steldev-page', <-- devel
       cwd: '/root/steldev-page', // production
       instances: 1,
@@ -26,4 +26,4 @@ module.exports = {
       log_date_format: 'YYYY-MM-DD HH:mm Z'
     }
   ]
-}; 
+};
