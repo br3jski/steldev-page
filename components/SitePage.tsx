@@ -8,6 +8,7 @@ interface WorkItem {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   href?: string;
   tags: string[];
 }
@@ -126,6 +127,7 @@ const content: Record<Locale, SiteCopy> = {
         description:
           'System do wizualizacji ruchu lotniczego w czasie rzeczywistym: dane ADS-B, rendering śladów lotów, backend i warstwa prezentacji.',
         image: '/radarview.jpg',
+        imageAlt: 'Podgląd interfejsu ADS-B.Pro RadarView',
         tags: ['ADS-B', 'real-time data', 'maps', 'backend'],
       },
       {
@@ -133,6 +135,7 @@ const content: Record<Locale, SiteCopy> = {
         description:
           'Nowoczesna implementacja aplikacji do śledzenia ruchu lotniczego oparta o .NET 10 i nowszą architekturę usługową.',
         image: '/vrsx.jpg',
+        imageAlt: 'Podgląd interfejsu VRS X',
         tags: ['.NET', 'tracking', 'architecture', 'aviation'],
       },
     ],
@@ -144,6 +147,8 @@ const content: Record<Locale, SiteCopy> = {
         title: 'Maja-Dekoracje',
         description:
           'Odświeżenie strony firmy usługowej z branży budowlano-ogrodowej: czytelniejsza oferta, lepszy układ usług i przygotowanie pod klientów z Google.',
+        image: '/maja-dekoracje.jpg',
+        imageAlt: 'Podgląd strony Maja-Dekoracje',
         href: 'https://maja-dekoracje.pl',
         tags: ['website refresh', 'local SEO', 'mobile', 'services'],
       },
@@ -254,6 +259,7 @@ const content: Record<Locale, SiteCopy> = {
         description:
           'Real-time air traffic visualization system: ADS-B data, flight track rendering, backend and presentation layer.',
         image: '/radarview.jpg',
+        imageAlt: 'ADS-B.Pro RadarView interface preview',
         tags: ['ADS-B', 'real-time data', 'maps', 'backend'],
       },
       {
@@ -261,6 +267,7 @@ const content: Record<Locale, SiteCopy> = {
         description:
           'Modern implementation of an air traffic tracking application based on .NET 10 and a newer service architecture.',
         image: '/vrsx.jpg',
+        imageAlt: 'VRS X interface preview',
         tags: ['.NET', 'tracking', 'architecture', 'aviation'],
       },
     ],
@@ -272,6 +279,8 @@ const content: Record<Locale, SiteCopy> = {
         title: 'Maja-Dekoracje',
         description:
           'Website refresh for a construction and garden services company: clearer offer, better service layout and preparation for clients coming from Google.',
+        image: '/maja-dekoracje.jpg',
+        imageAlt: 'Maja-Dekoracje website preview',
         href: 'https://maja-dekoracje.pl',
         tags: ['website refresh', 'local SEO', 'mobile', 'services'],
       },
@@ -347,13 +356,13 @@ function WorkCard({ item }: { item: WorkItem }) {
         <div className="border-b border-emerald-500/20 bg-black">
           <img
             src={item.image}
-            alt=""
+            alt={item.imageAlt || item.title}
             className="h-56 w-full object-cover opacity-75 contrast-125 saturate-75 transition duration-300 group-hover:opacity-100 group-hover:saturate-100"
           />
         </div>
       ) : (
         <div className="flex h-56 items-center justify-center border-b border-dashed border-emerald-500/20 bg-black/50 text-sm text-emerald-500/70">
-          [ internal_tool.preview ]
+          [ preview unavailable ]
         </div>
       )}
       <div className="p-6">
@@ -416,6 +425,8 @@ export default function SitePage({ copy }: { copy: SiteCopy }) {
         name: 'Cloudvance',
         url: siteUrl,
         email: 'bruno@stelmaszyk.dev',
+        telephone: '+48517230580',
+        image: `${siteUrl}/radarview.jpg`,
         founder: { '@id': `${siteUrl}/#person` },
       },
       {
@@ -423,6 +434,10 @@ export default function SitePage({ copy }: { copy: SiteCopy }) {
         '@id': `${siteUrl}/#professional-service`,
         name: 'Cloudvance - IT, cloud and websites',
         url: siteUrl,
+        telephone: '+48517230580',
+        email: 'bruno@stelmaszyk.dev',
+        image: `${siteUrl}/radarview.jpg`,
+        priceRange: 'Wycena indywidualna',
         provider: { '@id': `${siteUrl}/#organization` },
         areaServed: ['PL', 'EU'],
         serviceType: [

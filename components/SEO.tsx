@@ -105,8 +105,8 @@ export default function SEO({
       <meta property="og:url" content={pageUrl} />
       <meta property="og:site_name" content={defaultMeta.siteName} />
       <meta property="og:image" content={`${defaultMeta.url}${ogImage}`} />
-      <meta property="og:image:width" content="1977" />
-      <meta property="og:image:height" content="1471" />
+      <meta property="og:image:width" content="1867" />
+      <meta property="og:image:height" content="1365" />
       <meta property="og:image:alt" content={pageTitle} />
       
       {/* Twitter Card */}
